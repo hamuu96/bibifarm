@@ -36,7 +36,7 @@ if(filter_input(INPUT_POST,'add_to_cart')){
     (
       'produceID' => filter_input(INPUT_GET, 'produceID'), 
       'NAME' => filter_input(INPUT_POST, 'produceName'),
-      'price' => filter_input(INPUT_POST, 'price' ),
+      'price' => filter_input(INPUT_POST, 'producePrice' ),
       'qunatity '=> filter_input(INPUT_POST, 'quantity'),
     );
   }
@@ -147,7 +147,7 @@ if ($result):
            
         <img src="<?php echo"".$product['img'];?>" style="width:100%; height:auto; display:block;  margin:auto;" />
           <h4  class=text-info>  <?php echo $product['produceName'];?> </h4>
-          <h4> ksh <?php echo $product['price'];?> </h4>
+          <h4> ksh <?php echo $product['producePrice'];?> </h4>
           <input type="text" name="quantity" class='form-control' value='1'>
           <input type="hidden" name="name" value=" <?php echo $product['produceName'];?>" />
           <button type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" style='margin-top:10px; margin-bottom:10px;'>purchase </button>
@@ -178,26 +178,30 @@ endif;
     </tr>
 
     <?php
-      if(!empty($_SESSION['shopping_cart'])){
-        $initial = 0;
+            //$query = "SELECT * FROM PRODUCE ORDER BY produceID ASC ";
+           // $result = mysqli_query($conn,$query);
+            //$row = mysqli_fetch_array($result);
+                if(!empty($_SESSION["shopping_cart"])){
+                    $total = 0;
+                    foreach ($_SESSION["shopping_cart"] as $key => $produce) {
+                        print_r($PRODUCE);
+                        ?>
+                        <tr>
+                            <td><?php echo $produce["produceID"]; ?></td>
+                            <td><?php echo $produce["quantity"]; ?></td>
+                            <td>$ <?php echo $produce["producePrice"]; ?></td>
+                            <td>
+                                $ <?php echo number_format($produce["quantity"] * $produce["producePrice"], 2); ?></td>
+                            <td><a href="test.php?action=delete&id=<?php echo $produce["produceID"]; ?>"><span
+                                        class="text-danger">Remove Item</span></a></td>
 
-        foreach($_SESSION['shopping_cart'] as $key => $PRODUCE){
-          ?>
-          <tr>
-            <td><?php echo $PRODUCE['produceID'];?></td>
-            <td><?php echo $PRODUCE['quantity'];?></td>
-            <td><?php echo $PRODUCE['price'];?></td>
-            <td><?php echo number_format($PRODUCE['quantity']* $PRODUCE['price'], 2)?></td>
-            <td>
-              <a href="buy.php?action=delete&id=<?php echo $PRODUCE['produceID'];?>"></a>
-            </td>
-          </tr>
-          <?php
-        }
-          
-      }
-    
-      ?>
+                        </tr>
+                        <?php
+                        // $total +=($PRODUCE["quantity"] * $PRODUCE["producePrice"]);
+                    }
+                  }
+                        ?>
+
   </table>
 </div>
 

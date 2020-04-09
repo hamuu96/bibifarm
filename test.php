@@ -2,8 +2,8 @@
 
 include('connect.php');
     session_start();
-    session_destroy();
-    
+    //session_destroy();
+
 
 
     if (isset($_POST["add"])){
@@ -14,7 +14,7 @@ include('connect.php');
                 $item_array = array(
                     'product_id' => $_GET["produceID"],
                     'item_name' => $_POST["produceName"],
-                    'product_price' => $_POST["price"],
+                    'product_price' => $_POST["producePrice"],
                     'item_quantity' => $_POST["quantity"],
                 );
                 $_SESSION["cart"][$count] = $item_array;
@@ -27,7 +27,7 @@ include('connect.php');
             $item_array = array(
                 'product_id' => $_GET["produceID"],
                     'item_name' => $_POST["produceName"],
-                    'product_price' => $_POST["price"],
+                    'product_price' => $_POST["producePrice"],
                     'item_quantity' => $_POST["quantity"],
             );
             $_SESSION["cart"][0] = $item_array;
@@ -37,10 +37,10 @@ include('connect.php');
     if (isset($_GET["action"])){
         if ($_GET["action"] == "delete"){
             foreach ($_SESSION["cart"] as $keys => $PRODUCE){
-                if ($PRODUCE["produceID"] == $_GET["produceID"]){
+                if ($produce["produceID"] == $_GET["produceID"]){
                     unset($_SESSION["cart"][$keys]);
                     echo '<script>alert("Product has been Removed...!")</script>';
-                    echo '<script>window.location="test.phpp"</script>';
+                    echo '<script>window.location="test.php"</script>';
                 }
             }
         }
@@ -100,21 +100,21 @@ include('connect.php');
             $query = "SELECT * FROM PRODUCE ORDER BY produceID ASC ";
             $result = mysqli_query($conn,$query);
             if(mysqli_num_rows($result) > 0) {
-
+               
                 while ($row = mysqli_fetch_array($result)) {
 
                     ?>
                     <div class="col-md-3">
 
-                        <form method="post" action="test.php?action=add&id=<?php echo $row["produceID"]; ?>">
-
+                        <form method="get" action="test.php?action=add&id=<?php echo $row["produceID"]; ?>">
+  
                             <div class="product">
                                 <img src="<?php echo $row["img"]; ?>" class="img-responsive">
-                                <h5 class="text-info"><?php echo $row["produceID"]; ?></h5>
-                                <h5 class="text-danger"><?php echo $row["price"]; ?></h5>
+                                <h5 class="text-info"><?php echo $row["produceName"]; ?></h5>
+                                <h5 class="text-danger"><?php echo $row["producePrice"]; ?></h5>
                                 <input type="text" name="quantity" class="form-control" value="1">
                                 <input type="hidden" name="hidden_name" value="<?php echo $row["produceName"]; ?>">
-                                <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>">
+                                <input type="hidden" name="hidden_price" value="<?php echo $row["producePrice"]; ?>">
                                 <input type="submit" name="add" style="margin-top: 5px;" class="btn btn-success"
                                        value="Add to Cart">
                             </div>
@@ -138,22 +138,26 @@ include('connect.php');
             </tr>
 
             <?php
+            //$query = "SELECT * FROM PRODUCE ORDER BY produceID ASC ";
+           // $result = mysqli_query($conn,$query);
+            //$row = mysqli_fetch_array($result);
                 if(!empty($_SESSION["cart"])){
                     $total = 0;
-                    foreach ($_SESSION["cart"] as $key => $PRODUCE) {
+                    foreach ($_SESSION["cart"] as $key => $produce) {
+                        print_r($PRODUCE);
                         ?>
                         <tr>
-                            <td><?php echo $PRODUCE["produceName"]; ?></td>
-                            <td><?php echo $PRODUCE["quantity"]; ?></td>
-                            <td>$ <?php echo $PRODUCE["price"]; ?></td>
+                            <td><?php echo $produce["produceID"]; ?></td>
+                            <td><?php echo $produce["quantity"]; ?></td>
+                            <td>$ <?php echo $produce["producePrice"]; ?></td>
                             <td>
-                                $ <?php echo number_format($PRODUCE["quantity"] * $PRODUCE["price"], 2); ?></td>
-                            <td><a href="buy.php?action=delete&id=<?php echo $PRODUCE["produceID"]; ?>"><span
+                                $ <?php echo number_format($produce["quantity"] * $produce["producePrice"], 2); ?></td>
+                            <td><a href="test.php?action=delete&id=<?php echo $produce["produceID"]; ?>"><span
                                         class="text-danger">Remove Item</span></a></td>
 
                         </tr>
                         <?php
-                        // $total +=($PRODUCE["quantity"] * $PRODUCE["price"]);
+                        // $total +=($PRODUCE["quantity"] * $PRODUCE["producePrice"]);
                     }
                         ?>
                         <tr>
