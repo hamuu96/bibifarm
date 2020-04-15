@@ -1,4 +1,8 @@
+<?php 
+session_start();
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,7 +128,7 @@
                 <i class="fas fa-plus fa-3x"></i>
               </div>
             </div>
-            <img class="img-fluid" src="images/produces/ onion.jpg" alt="">
+            <img class="img-fluid" src="images/produces/onion.jpg" alt="">
           </a>
           <div class="products-caption">
             <h4>Onions</h4>

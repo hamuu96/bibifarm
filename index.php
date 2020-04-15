@@ -30,7 +30,7 @@ $exec_produce = mysqli_query($conn, $create_produce);
 
 //produce insertion
 $insert_onion = "INSERT  INTO  `PRODUCE` (produceID, produceName, producePrice, produceDescription,img)
-                    VALUES (01, 'Onion', 200,'The red onions are mostly large to medium size and has a mellow test.','images/produces/ onion.jpg')";
+                    VALUES (01, 'Onion', 200,'The red onions are mostly large to medium size and has a mellow test.','images/produces/onion.jpg')";
 
 $exec_iProduce = mysqli_query($conn, $insert_onion);
 
@@ -76,20 +76,52 @@ $sql_customer = 'CREATE TABLE IF NOT EXISTS CUSTOMER(
 
 $exec_client = mysqli_query( $conn, $sql_customer); 
 if($exec_client){
-    echo 'successul';
+    // echo 'successul';
 }
 else{
     echo 'error'.mysqli_error($conn);
 }
 
- if(!$exec_iProduce  and !$exec_tomatoes and !$exec_green and !$insert_water and !$insert_pepers and  !$insert_avacado  and   !mysqli_query($conn, $create_produce) and !$exec_client ){
+//  sales table 
+
+$sql_sales = " CREATE TABLE  IF NOT EXISTS SALES(
+    salesID int(7) auto_increment primary key, 
+    FOREIGN KEY (userID) references customer (userID) , 
+    FOREIGN KEY (produceID) references  produce (produceID), 
+    userid int, 
+    produceid int,
+    produceName varchar(20) not null ,  
+    Quantity int(20), 
+    Total int(20), 
+    username varchar(25)
+)";
+
+$exec_sales = mysqli_query($conn, $sql_sales);
+
+
+if($exec_sales){
+    // echo 'successul';
+}
+else{
+    echo 'error'.mysqli_error($conn);
+}
+
+
+ if(!$exec_iProduce  and !$exec_tomatoes and !$exec_green and !$insert_water and !$insert_pepers and  !$insert_avacado  and 
+   !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales ){
      echo 'error'.mysqli_error($conn);
  }
  else{
-     // echo 'successful'.mysqli_error($conn);
-      header('Location:main.php');
+      echo 'successful'.mysqli_error($conn);
+    //   header('Location:main.php');
       exit;
  }
+
+
+
+
+
+
 
 
 //check connection
