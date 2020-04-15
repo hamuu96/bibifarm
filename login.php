@@ -1,12 +1,18 @@
 <?php
 session_start();
 
+
 //connection to database 
 include('connect.php');
 
 if (isset($_GET['login'])) {
-  $email = mysqli_real_escape_string($conn, $_GET['email']);
+  $username = mysqli_real_escape_string($conn, $_GET['username']);
   $password = mysqli_real_escape_string($conn, $_GET['password']);
+
+  $_SESSION['username'] = $username; 
+  // $_SESSION['userid'] = $userID;
+
+  // $sql = 'SELECT * FROM CUSTOMER WHERE'
 
   if (empty($username)) {
   	echo 'enter username';
@@ -14,20 +20,29 @@ if (isset($_GET['login'])) {
   else if (empty($password)) {
   	echo 'enter password';
   }
-
-
+  //store the password provided in the input as md5 encrypted
   $password_1 = md5($password);
   $new = substr($password_1, 0, -2);
- if ($username !=='' && $password !=='') {
-     
-      echo $password_1;
-      
-    $sql ="SELECT * FROM CUSTOMER WHERE email='$email' AND password='$password_1'";
+ if ($username !=='' && $password !=='') {    
+      // echo $password_1;     
+    $sql ="SELECT userID FROM CUSTOMER WHERE username='$username' AND password='$password_1'";
 
     $exec = mysqli_query($conn,$sql) or die(mysqli_error($conn));
-    
-    $count = mysqli_num_rows($exec);
 
+      $arr_rows = array();
+    //   while ($row = mysqli_fetch_row($exec)) {
+    //     printf ("%s (%s)\n", $row[0]);
+    // }
+      while( $row = mysqli_fetch_array($exec) ){
+        // print_r("%s (%s)\n", $row[0]);
+        $arr_rows[] = $row;
+        //  print_r($row["userID"]);
+         $_SESSION['userid'] = $row[0] ;
+        //  print_r($_SESSION['userid']);
+
+      }
+    $count = mysqli_num_rows($exec);
+   
     if($count > 0){
       header('Location:main.php');
     }
@@ -54,7 +69,7 @@ if (isset($_GET['login'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title>Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -86,7 +101,7 @@ if (isset($_GET['login'])) {
                   </div>
                   <form class="user" method='get' action='login.php'>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name='email'>
+                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter username" name='username'>
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name='password'>
