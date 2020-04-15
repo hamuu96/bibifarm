@@ -84,12 +84,12 @@ else{
 
 //  sales table 
 
-$sql_sales = " CREATE TABLE  IF NOT EXISTS SALES(
+$sql_sales = " CREATE TABLE IF NOT EXISTS SALES(
     salesID int(7) auto_increment primary key, 
-    FOREIGN KEY (userID) references customer (userID) , 
-    FOREIGN KEY (produceID) references  produce (produceID), 
-    userid int, 
-    produceid int,
+    FOREIGN KEY (userID) references CUSTOMER (userID) , 
+    FOREIGN KEY (produceID) references  PRODUCE (produceID), 
+    userid int(6), 
+    produceid int(4),
     produceName varchar(20) not null ,  
     Quantity int(20), 
     Total int(20), 
@@ -100,20 +100,37 @@ $exec_sales = mysqli_query($conn, $sql_sales);
 
 
 if($exec_sales){
-    // echo 'successul';
+     //echo 'successul';
 }
 else{
-    echo 'error'.mysqli_error($conn);
+     echo 'error'.mysqli_error($conn);
 }
+
+$sql_care = "CREATE TABLE IF NOT EXISTS CARE(
+    careID int(5) auto_increment primary key, 
+    email varchar(30), 
+    name varchar(25),
+    subject varchar(50), 
+    message varchar(150)
+)";
+
+
+$exec_care = mysqli_query($conn, $sql_care);
+if(!$exec_care){
+    echo 'errorRRR'.mysqli_error($conn);
+}
+
+
+
 
 
  if(!$exec_iProduce  and !$exec_tomatoes and !$exec_green and !$insert_water and !$insert_pepers and  !$insert_avacado  and 
-   !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales ){
-     echo 'error'.mysqli_error($conn);
+   !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales and !$exec_care ){
+    //  echo 'error'.mysqli_error($conn);
  }
  else{
-      echo 'successful'.mysqli_error($conn);
-    //   header('Location:main.php');
+    //   echo 'successful'.mysqli_error($conn);
+      header('Location:main.php');
       exit;
  }
 

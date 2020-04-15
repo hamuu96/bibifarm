@@ -1,40 +1,38 @@
 <?php 
 session_start();
 //session_destroy();
-$connect = mysqli_connect("localhost", "root", "", "BibiFarm");
+include('connect.php');
 // $_SESSION['username']; 
 // $_SESSION['userid'];
 
 
-if(isset($_POST["check_out"]))
-{
-?>
-<script>alert("ddggd");</script>
-<?php
-if(!empty($_SESSION["shopping_cart"]))
-					{
 
-header("Location: login.php");
-}}
 
-if(isset($_POST["add_to_cart"]))
+// if(isset($_POST["buy"]))
+// {
+// 
+// if(!empty($_SESSION["Shopping_Cart"]))
+// 	{
+
+// header("Location:login.php");
+// }}
+
+if(isset($_POST["add"]))
 {
-	if(isset($_SESSION["shopping_cart"]))
+	if(isset($_SESSION["Shopping_Cart"]))
 	{
-		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+		$item_array_id = array_column($_SESSION["Shopping_Cart"], "produce_id");
 		if(!in_array($_GET["id"], $item_array_id))
 		{
-			$count = count($_SESSION["shopping_cart"]);
+			$count = count($_SESSION["Shopping_Cart"]);
 			$item_array = array(
-				'item_id'			=>	$_GET["id"],
-				'item_name'			=>	$_POST["hidden_name"],
-				'item_price'		=>	$_POST["hidden_price"],
-				'item_quantity'		=>	$_POST["quantity"]
+				'produce_id'			=>	$_GET["id"],
+				'name'				=>	$_POST["hidden_name"],
+				'produce_price'		=>	$_POST["hidden_price"],
+				'produce_quantity'		=>	$_POST["quantity"]
 			);
-			$_SESSION["shopping_cart"][$count] = $item_array;
-			// $list = array();
-			// $list += $GLOBALS['values'];
-
+			$_SESSION["Shopping_Cart"][$count] = $item_array;
+		
 		}
 		else
 		{
@@ -44,12 +42,12 @@ if(isset($_POST["add_to_cart"]))
 	else
 	{
 		$item_array = array(
-			'item_id'			=>	$_GET["id"],
-			'item_name'			=>	$_POST["hidden_name"],
-			'item_price'		=>	$_POST["hidden_price"],
-			'item_quantity'		=>	$_POST["quantity"]
+			'produce_id'			=>	$_GET["id"],
+			'name'				=>	$_POST["hidden_name"],
+			'produce_price'		=>	$_POST["hidden_price"],
+			'produce_quantity'		=>	$_POST["quantity"]
 		);
-		$_SESSION["shopping_cart"][0] = $item_array;
+		$_SESSION["Shopping_Cart"][0] = $item_array;
 	}
 }
 
@@ -57,13 +55,13 @@ if(isset($_GET["action"]))
 {
 	if($_GET["action"] == "delete")
 	{
-		foreach($_SESSION["shopping_cart"] as $keys => $values)
+		foreach($_SESSION["Shopping_Cart"] as $keys => $values)
 		{
-			if($values["item_id"] == $_GET["id"])
+			if($values["produce_id"] == $_GET["id"])
 			{
-				unset($_SESSION["shopping_cart"][$keys]);
+				unset($_SESSION["Shopping_Cart"][$keys]);
 				echo '<script>alert("Item Removed")</script>';
-				echo '<script>window.location="new.php"</script>';
+				echo '<script>window.location="buy.php"</script>';
 			}
 		}
 	}
@@ -92,6 +90,7 @@ if(isset($_GET["action"]))
         }
         table, th, tr{
             text-align: center;
+			padding-top:10px;
         }
         .title2{
             text-align: center;
@@ -109,21 +108,22 @@ if(isset($_GET["action"]))
             background-color: #efefef;
         }
     </style>
+
 	</head>
 	<body>
 		
 	<div class="container" style="width: 65%">
 		<h2>Shopping Cart</h2>
 			<?php
-				$query = "SELECT * FROM produce ORDER BY produceID ASC";
-				$result = mysqli_query($connect, $query);
+				$query = "SELECT * FROM PRODUCE ORDER BY produceID ASC";
+				$result = mysqli_query($conn, $query);
 				if(mysqli_num_rows($result) > 0)
 				{
 					while($row = mysqli_fetch_array($result))
 					{
 				?>
 			<div class="col-md-3">
-				<form method="post" action="new.php?action=add&id=<?php echo $row["produceID"]; ?>">
+				<form method="post" action="buy.php?action=add&id=<?php echo $row["produceID"]; ?>">
 				<div class="product">
                                 <img src="<?php echo $row["img"]; ?>" class="img-responsive">
                                 <h5 class="text-info"><?php echo $row["produceName"]; ?></h5>
@@ -131,7 +131,7 @@ if(isset($_GET["action"]))
                                 <input type="text" name="quantity" class="form-control" value="1">
                                 <input type="hidden" name="hidden_name" value="<?php echo $row["produceName"]; ?>">
                                 <input type="hidden" name="hidden_price" value="<?php echo $row["producePrice"]; ?>">
-                                <input type="submit" name="add_to_cart" style="margin-top: 5px;" class="btn btn-success"
+                                <input type="submit" name="add" style="margin-top: 5px;" class="btn btn-success"
                                        value="Add to Cart">
                             </div>
 				</form>
@@ -153,24 +153,24 @@ if(isset($_GET["action"]))
                 <th width="17%">Remove Item</th>
             </tr>
 					<?php
-					if(!empty($_SESSION["shopping_cart"]))
+					if(!empty($_SESSION["Shopping_Cart"]))
 					{
 						$total = 0;
-						foreach($_SESSION["shopping_cart"] as $keys => $values)
+						foreach($_SESSION["Shopping_Cart"] as $keys => $values)
 						{
 					
 					?>
 					<tr>
-						<td><?php echo $values["item_name"]; ?></td>
-						<td><?php echo $values["item_quantity"]; ?></td>
-						<td>$ <?php echo $values["item_price"]; ?></td>
-						<td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2);?></td>
-						<td><a href="new.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+						<td><?php echo $values["name"]; ?></td>
+						<td><?php echo $values["produce_quantity"]; ?></td>
+						<td>$ <?php echo $values["produce_price"]; ?></td>
+						<td>$ <?php echo number_format($values["produce_quantity"] * $values["produce_price"], 2);?></td>
+						<td><a href="buy.php?action=delete&id=<?php echo $values["produce_id"]; ?>"><span class="text-danger">Remove</span></a></td>
 						
 					</tr>
 					<?php
-					$_SESSION['itemName'] = $values['item_name'];
-							$total = $total + ($values["item_quantity"] * $values["item_price"]);
+					$_SESSION['itemName'] = $values['name'];
+							$total = $total + ($values["produce_quantity"] * $values["produce_price"]);
 						}
 					?>
 					<tr>
@@ -186,29 +186,29 @@ if(isset($_GET["action"]))
 					
 
 					//trying insert data to database after buy button is pressed 
-					if(!empty($_SESSION["shopping_cart"]))
+					if(!empty($_SESSION["Shopping_Cart"]))
 					{
 						if(isset($_POST['buy'])){
 							$total = 0;
-							foreach($_SESSION["shopping_cart"] as $keys => $values)
+							foreach($_SESSION["Shopping_Cart"] as $keys => $values)
 							{
 							$userid=$_SESSION['userid'];
-							$produceid=$values["item_id"];
-							$produceName=$values["item_name"];
-							$Quantity=$values["item_quantity"];
-							$Total=$values["item_price"]*$Quantity;
+							$produceid=$values["produce_id"];
+							$produceName=$values["name"];
+							$Quantity=$values["produce_quantity"];
+							$Total=$values["produce_price"]*$Quantity;
 							$username=$_SESSION['username'];
-								$query = "INSERT INTO sales(userid,produceid,produceName,Quantity,Total,username)
+								$query = "INSERT INTO SALES(userid,produceid,produceName,Quantity,Total,username)
 							VALUES('$userid','$produceid','$produceName','$Quantity','$Total','$username')";
-							$result = mysqli_query($connect,$query); 
-							// unset($_SESSION["shopping_cart"]);
+							$result = mysqli_query($conn,$query); 
+							// unset($_SESSION["Shopping_Cart"]);
 							}
 						}
 				}
 					?>
 						
 				</table>
-				<form action="new.php" method="post">
+				<form action="buy.php" method="post">
 				<button class="btn btn-primary" type="submit" name='buy'>buy produce</button>
 				</form>
 			</div>

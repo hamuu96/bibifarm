@@ -2,6 +2,16 @@
 session_start();
 
 
+if(empty($_SESSION['username'])){
+	header("Location:login.php");
+}
+else{
+  header("location:alogin.php");
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +67,9 @@ session_start();
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
+          
         </ul>
+       
       </div>
     </div>
   </nav>
@@ -483,15 +495,11 @@ session_start();
             <div class="col-lg-8 mx-auto">
               <div class="modal-body">
                 <!-- Project Details Go Here -->
-                <h2 class="text-uppercase"><?php echo $produceID ;?></h2>
+                <h2 class="text-uppercase">Onion</h2>
                 
                 <p>The red onions are mostly large to medium size and has a mellow test.The red onions are mostly consumed in three methods: <br> <em>lightly cooked, grilled and sometimes raw</em></p>
                 
-                <div>
-                  <form action="GET" action='' >
-                    <input type="number" value="0" min="0" max="1000" step="10"/ id='input-produce' style="margin-right: 20px;" ><br><br><br>
-                    <button class="btn btn-primary" type="submit" name='onion'>buy produce</button>
-                  </form>
+                <a href="buy.php" class='btn btn-primary'>buy produce</a>
                                     
                 </div>
               </div>
@@ -520,10 +528,7 @@ session_start();
                 <p>Tomatoes are normally  rounded, large, edible, pulpy berry of an herb of the nightshade family native to South America that is typically red but may be yellow, orange, green, or purplish in color and is eaten raw or cooked as a vegetable</p>
                   
                 <div>
-                  <form action="POST" class='onion'>
-                    <input type="number" value="0" min="0" max="1000" step="10"/ id='input-produce' style="margin-right: 20px;" >
-                    <button class="btn btn-primary" type="button">buy produce</button>
-                  </form>
+                <a href="buy.php" class='btn btn-primary'>buy produce</a>
                                     
                 </div>
               </div>
@@ -557,10 +562,7 @@ session_start();
                 </ul>
                  
                 <div>
-                  <form action="POST" class='onion'>
-                    <input type="number" value="0" min="0" max="1000" step="10"/ id='input-produce' style="margin-right: 20px;" >
-                    <button class="btn btn-primary" type="button">buy produce</button>
-                  </form>
+                <a href="buy.php" class='btn btn-primary'>buy produce</a>
                                     
                 </div>
               </div>
@@ -590,10 +592,7 @@ session_start();
                 
                 
                 <div>
-                  <form action="POST" class='onion'>
-                    <input type="number" value="0" min="0" max="1000" step="10"/ id='input-produce' style="margin-right: 20px;" >
-                    <button class="btn btn-primary" type="button">buy produce</button>
-                  </form>
+                <a href="buy.php" class='btn btn-primary'>buy produce</a>
                                     
                 </div>
               </div>
@@ -623,10 +622,7 @@ session_start();
                 
                
                 <div>
-                  <form action="POST" class='onion'>
-                    <input type="number" value="0" min="0" max="1000" step="10"/ id='input-produce' style="margin-right: 20px;" >
-                    <button class="btn btn-primary" type="submit">buy produce</button>
-                  </form>
+                <a href="buy.php" class='btn btn-primary'>buy produce</a>
                                     
                 </div>
               </div>
@@ -658,10 +654,7 @@ session_start();
                   quantity. In 2017, Mexico produced 34% of the world supply of avocados.</p>
                    
                   <div>
-                    <form action="POST" class='onion'>
-                      <input type="number" value="0" min="0" max="1000" step="10"/ id='input-produce' style="margin-right: 20px; padding:20px 20px" >
-                      <button class="btn btn-primary" type="button">buy produce</button>
-                    </form>
+                  <a href="buy.php" class='btn btn-primary'>buy produce</a>
                                       
                   </div>
                   
