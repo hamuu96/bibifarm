@@ -1,18 +1,54 @@
-<!--
+<?php
 
-=========================================================
-* Argon Dashboard - v1.1.2
-=========================================================
+include('../../connect.php');
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+if (isset($_GET['login'])) {
+  $username = mysqli_real_escape_string($conn, $_GET['username']);
+  $password = mysqli_real_escape_string($conn, $_GET['password']);
 
-* Coded by Creative Tim
+  $_SESSION['username'] = $username; 
+  // $_SESSION['userid'] = $userID;
 
-=========================================================
+  // $sql = 'SELECT * FROM CUSTOMER WHERE'
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+  if (empty($username)) {
+  	echo 'enter username';
+  }
+  else if (empty($password)) {
+  	echo 'enter password';
+  }
+  //store the password provided in the input as md5 encrypted
+  $password_1 = md5($password);
+  $new = substr($password_1, 0, -2);
+ if ($username !=='' && $password !=='') {    
+      // echo $password_1;     
+    $sql ="SELECT adminID FROM ADMIN WHERE username='$username' AND password='$password_1'";
+
+    $exec = mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
+      // $arr_rows = array();
+      while( $row = mysqli_fetch_array($exec) ){
+          // $arr_rows[] = $row;
+          // $_SESSION['userid'] = $row[0] ;
+      }
+    $count = mysqli_num_rows($exec);
+   
+    if($count > 0){
+      header('Location:index.html');
+      
+    }
+    else{
+      ?> 
+      <div class='alert alert-warning' style="margin-top:70px;"><?php echo 'The password or email you entered is wrong'?></div>
+  
+     <?php
+    }
+    
+  }
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +56,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>
-    Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
+    bibi farm admin portal 
   </title>
   <!-- Favicon -->
   <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
@@ -98,7 +134,7 @@
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
               <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+              <p class="text-lead text-light">use this page to login as admins
             </div>
           </div>
         </div>
@@ -115,29 +151,17 @@
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-              <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
-                </a>
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
-              </div>
-            </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+                <small> sign in with credentials</small>
               </div>
-              <form role="form">
+              <form role="form" method='get' action='admin-login.php'>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" placeholder="Username" name='username' type="text">
                   </div>
                 </div>
                 <div class="form-group">
@@ -145,28 +169,21 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" placeholder="Password" name='password' type="password">
                   </div>
                 </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
-                  </label>
-                </div>
+               
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4" name='login'>Sign in</button>
                 </div>
               </form>
             </div>
           </div>
           <div class="row mt-3">
-            <div class="col-6">
-              <a href="#" class="text-light"><small>Forgot password?</small></a>
-            </div>
-            <div class="col-6 text-right">
-              <a href="#" class="text-light"><small>Create new account</small></a>
-            </div>
+          <div class="custom-control custom-control-alternative custom-checkbox">
+                    <a class="small" href="admin-register.php">Dont have an account!</a>  
+           </div>
+           
           </div>
         </div>
       </div>
@@ -176,7 +193,7 @@
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
-              © 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+              © 2018 <a href="" class="font-weight-bold ml-1" target="_blank"></a>
             </div>
           </div>
           <div class="col-xl-6">

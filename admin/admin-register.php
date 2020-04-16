@@ -33,6 +33,9 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
                   $sql = "INSERT INTO ADMIN (firstname, lastname, phoneNo, email, c_address, username, password)
                  VALUES ( '$firstname', '$lastname', '$phone', '$email', '$address', '$username', '$password')";
                   $exec = mysqli_query($conn, $sql);
+                  if($exec){
+                    header('Location:admin-login.php');
+                  }
                   
               
                 }
@@ -225,10 +228,8 @@ else{
                 <div class="row my-4">
                   <div class="col-12">
                     <div class="custom-control custom-control-alternative custom-checkbox">
-                      <!-- <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                      <label class="custom-control-label" for="customCheckRegister">
-                        <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span> -->
-                      </label>
+                    <a class="small" href="admin-login.php">Already have an account? Login!</a>
+                      
                     </div>
                   </div>
                 </div>

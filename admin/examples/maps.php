@@ -1,18 +1,56 @@
-<!--
+<?php 
+session_start();
+include('../../connect.php');
 
-=========================================================
-* Argon Dashboard - v1.1.2
-=========================================================
+if(isset($_POST['add'])){
+  $e_name = $_POST['equipment'];
+  $e_price = $_POST['price']; 
+  $e_quantity = $_POST['quantity']; 
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
+  // $_SESSION['quantity'] = $e_quantity;
 
-* Coded by Creative Tim
+  
 
-=========================================================
+  $sql1  = mysqli_query($conn, "SELECT * FROM  EINVENTORY  WHERE e_name='$e_name' ");
+  
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+                  if ($sql1){
+                    $count = mysqli_num_rows($sql1);
+                    if($count>=1){
+                      $query=  mysqli_query($conn, "update EINVENTORY set e_quantity='$e_quantity'");
+                          if($query){
+                            // $total = $e_quantity + $_SESSION['quantity']; 
+                            ?> 
+                            <div class='alert alert-warning' style="margin-top:50px; margin-left:120px; width:50%; text-align:center;"><?php echo "The $e_name quantity has been updated"?></div>
+                        
+                          <?php
+                      }
+                    }
+                      else{
+                        $sql = "INSERT INTO EINVENTORY (e_name, e_quantity, e_price)
+                        VALUES ( '$e_name', '$e_quantity', '$e_price')";
+                         $exec = mysqli_query($conn, $sql);
+                         
+                         if($exec){
+                             
+                            // $_SESSION['quantity'] = $e_quantity;
+                            
+                          ?> 
+                          <div class='alert alert-warning' style="margin-top:50px; margin-left:100px; width:50%; text-align:center;"><?php echo "The $e_name has been added to the equiment inventory"?></div>
+                      
+                         <?php
+                         }
+                      }
+                      
+                  
+                      
+                  }
+                 
+
+
+                }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -352,7 +390,30 @@
       <div class="row">
         <div class="col">
           <div class="card shadow border-0">
-            <div  style="height: 600px;">inventory</div>
+              <div class="text-center">
+                <div  style="height: 600px;" >
+                  <h3 class=" text-uppercase text-muted mb-0" style='padding-top:10px;'>inventory</h3>
+                  <br><br><br>
+                  <form action="" method="post" action='maps.php' style='width:40%; margin:auto;' >
+                      <div class="form-group" >
+                        
+                        <label >Equipment name </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Equipment name" name='equipment'>
+                        
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Quantity</label>
+                        <input type="text" class="form-control"  placeholder="quantity" name='quantity'>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Price</label>
+                        <input type="text" class="form-control"  placeholder="price KSH" value="0" name='price'>
+                      </div>
+                      <button type="submit" class="btn btn-primary" name='add'>Add Equipment</button>
+                    
+                  </form>
+                </div>
+                </div>
           </div>
         </div>
       </div>

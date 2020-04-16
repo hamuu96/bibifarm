@@ -140,13 +140,28 @@ else{
     echo 'error'.mysqli_error($conn);
 }
 
+$sql_Einventory = 'CREATE TABLE IF NOT EXISTS EINVENTORY(
+    equipID int(5) auto_increment primary key, 
+    e_name varchar(20), 
+    e_quantity int(4), 
+    e_price varchar(10)
+)';
+
+$exec_einven = mysqli_query( $conn, $sql_Einventory); 
+if($exec_einven){
+    //echo 'successul';
+}
+else{
+    echo 'error'.mysqli_error($conn);
+}
+
  if(!$exec_iProduce  and !$exec_tomatoes and !$exec_green and !$insert_water and !$insert_pepers and  !$insert_avacado  and 
-   !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales and !$exec_care and !$exec_admin ){
+   !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales and !$exec_care and !$exec_admin  and !$exec_einven){
     //  echo 'error'.mysqli_error($conn);
  }
  else{
       //echo 'successful'.mysqli_error($conn);
-      header('Location:main.php');
+     header('Location:main.php');
       exit;
  }
 

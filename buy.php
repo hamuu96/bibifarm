@@ -6,6 +6,7 @@ include('connect.php');
 // $_SESSION['userid'];
 
 
+
 // if(isset($_POST["buy"]))
 // {
 // 
@@ -30,7 +31,7 @@ if(isset($_POST["add"]))
 				'produce_quantity'		=>	$_POST["quantity"]
 			);
 			$_SESSION["Shopping_Cart"][$count] = $item_array;
-		
+			print_r($_SESSION['username']);
 		}
 		else
 		{
