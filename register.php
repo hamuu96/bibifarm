@@ -13,13 +13,7 @@ if(isset($_POST['register'])){
   $username = $_POST['username'];
 
 
-
-
-
-
-
-  
-
+  $_SESSION['ausername'] = $username;
 
 //check if any registration fields are empty
 if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and $username !=''  and $address !=''  and $phone !=''){
@@ -28,7 +22,11 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
         $sql1  = mysqli_query($conn, "SELECT * FROM  CUSTOMER  WHERE username='$username' ");
             if ($sql1){
               $count = mysqli_num_rows($sql1);
-              if($count>=1)
+              if($_SESSION['ausername']== 'admin'){
+                // print_r($_SESSION['ausername']);
+                header('Location:admin/examples/register.html');
+              }
+              else if($count>=1)
                 {
                 echo"name already exists";
               }
@@ -39,8 +37,9 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
                  VALUES ( '$firstname', '$lastname', '$phone', '$email', '$address', '$username', '$password')";
                   $exec = mysqli_query($conn, $sql);
                   
+                 
                   // echo 'successful'.mysqli_error($conn);
-                   header('Location:login.php');
+                  //  header('Location:login.php');
                 }
 
             }

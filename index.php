@@ -120,16 +120,32 @@ if(!$exec_care){
     echo 'errorRRR'.mysqli_error($conn);
 }
 
+// //create table for admin registration
+$sql_admin = 'CREATE TABLE IF NOT EXISTS ADMIN(
+    adminID int(6) auto_increment primary key, 
+    firstname varchar(7), 
+    lastname varchar(30), 
+    phoneNo varchar(12), 
+    email varchar(40), 
+    c_address varchar(30), 
+    username varchar(25), 
+    password varchar(100)
+)';
 
-
-
+$exec_admin = mysqli_query( $conn, $sql_admin); 
+if($exec_admin){
+    // echo 'successul';
+}
+else{
+    echo 'error'.mysqli_error($conn);
+}
 
  if(!$exec_iProduce  and !$exec_tomatoes and !$exec_green and !$insert_water and !$insert_pepers and  !$insert_avacado  and 
-   !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales and !$exec_care ){
+   !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales and !$exec_care and !$exec_admin ){
     //  echo 'error'.mysqli_error($conn);
  }
  else{
-    //   echo 'successful'.mysqli_error($conn);
+      //echo 'successful'.mysqli_error($conn);
       header('Location:main.php');
       exit;
  }

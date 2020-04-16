@@ -6,8 +6,6 @@ include('connect.php');
 // $_SESSION['userid'];
 
 
-
-
 // if(isset($_POST["buy"]))
 // {
 // 

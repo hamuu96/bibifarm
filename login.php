@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-
-
-
 //connection to database 
 include('connect.php');
 
@@ -47,6 +44,7 @@ if (isset($_GET['login'])) {
    
     if($count > 0){
       header('Location:main.php');
+      
     }
     else{
       ?> 
@@ -57,11 +55,6 @@ if (isset($_GET['login'])) {
     
   }
 }
-
- 
-
-
-
 
 
 ?>
