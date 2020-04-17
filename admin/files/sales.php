@@ -1,18 +1,9 @@
-<!--
+<?php
 
-=========================================================
-* Argon Dashboard - v1.1.2
-=========================================================
+include('../../connect.php');
+session_start();
 
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +32,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="../index.html">
+      <a class="navbar-brand pt-0" href="../admin-index.php">
         <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
@@ -70,19 +61,19 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="../examples/profile.html" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
-            <a href="../examples/profile.html" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
-            <a href="../examples/profile.html" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-calendar-grid-58"></i>
               <span>Activity</span>
             </a>
-            <a href="../examples/profile.html" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
@@ -100,7 +91,7 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="../index.html">
+              <a href="../admin-index.php">
                 <img src="../assets/img/brand/blue.png">
               </a>
             </div>
@@ -126,37 +117,37 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item  active ">
-            <a class="nav-link " href="../index.html">
+            <a class="nav-link " href="../admin-index.php">
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="../examples/icons.html">
+            <a class="nav-link " href="../files/icons.html">
               <i class="ni ni-planet text-blue"></i> Icons
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="../examples/maps.html">
-              <i class="ni ni-pin-3 text-orange"></i> Maps
+            <a class="nav-link " href="../files/inventory.php">
+              <i class="ni ni-pin-3 text-orange"></i> Inventory
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="../examples/profile.html">
+            <a class="nav-link " href="../files/admin-profile.php">
               <i class="ni ni-single-02 text-yellow"></i> User profile
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="../examples/tables.html">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
+            <a class="nav-link  active " href="../files/sales.php">
+              <i class="ni ni-bullet-list-67 text-red"></i> Sales
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../examples/login.html">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="../files/admin-login.php">
               <i class="ni ni-key-25 text-info"></i> Login
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="../examples/register.html">
+            <a class="nav-link" href="../files/admin-register.php">
               <i class="ni ni-circle-08 text-pink"></i> Register
             </a>
           </li>
@@ -185,7 +176,7 @@
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item active active-pro">
-            <a class="nav-link" href="../examples/upgrade.html">
+            <a class="nav-link" href="../files/upgrade.html">
               <i class="ni ni-send text-dark"></i> Upgrade to PRO
             </a>
           </li>
@@ -198,7 +189,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../index.html">Upgrade</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../admin-index.php">Tables</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -219,7 +210,7 @@
                   <img alt="Image placeholder" src="../assets/img/theme/team-4-800x800.jpg">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+                  <span class="mb-0 text-sm  font-weight-bold"><?php print_r($_SESSION['ausername']); ?> </span>
                 </div>
               </div>
             </a>
@@ -227,19 +218,19 @@
               <div class=" dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="../examples/profile.html" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="../examples/profile.html" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Settings</span>
               </a>
-              <a href="../examples/profile.html" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-calendar-grid-58"></i>
                 <span>Activity</span>
               </a>
-              <a href="../examples/profile.html" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-support-16"></i>
                 <span>Support</span>
               </a>
@@ -256,77 +247,165 @@
     <!-- End Navbar -->
     <!-- Header -->
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-    </div>
-    <div class="container-fluid mt--7">
-      <div class="row mt--5">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="card card-upgrade">
-            <div class="card-header text-center border-bottom-0">
-              <h4 class="card-title">Argon Dashboard PRO</h4>
-              <p class="card-category">Are you looking for more components? Please check our Premium Version of Argon Dashboard.</p>
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                      <span class="h2 font-weight-bold mb-0">350,897</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="table-responsive table-upgrade">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th class="text-center">Free</th>
-                      <th class="text-center">PRO</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Elements</td>
-                      <td class="text-center">100</td>
-                      <td class="text-center">200</td>
-                    </tr>
-                    <tr>
-                      <td>Plugins</td>
-                      <td class="text-center">4</td>
-                      <td class="text-center">16</td>
-                    </tr>
-                    <tr>
-                      <td>Example Pages</td>
-                      <td class="text-center">6</td>
-                      <td class="text-center">25</td>
-                    </tr>
-                    <tr>
-                      <td>DataTables, VectorMap, SweetAlert, Wizard,<br> jQueryValidation, FullCalendar etc...</td>
-                      <td class="text-center"><i class="ni ni-fat-remove text-danger"></i></td>
-                      <td class="text-center"><i class="ni ni-check-bold text-success"></i></td>
-                    </tr>
-                    <tr>
-                      <td>Mini Sidebar</td>
-                      <td class="text-center"><i class="ni ni-fat-remove text-danger"></i></td>
-                      <td class="text-center"><i class="ni ni-check-bold text-success"></i></td>
-                    </tr>
-                    <tr>
-                      <td>Premium Support</td>
-                      <td class="text-center"><i class="ni ni-fat-remove text-danger"></i></td>
-                      <td class="text-center"><i class="ni ni-check-bold text-success"></i></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td class="text-center">Free</td>
-                      <td class="text-center">Just $79</td>
-                    </tr>
-                    <tr>
-                      <td class="text-center"></td>
-                      <td class="text-center">
-                        <a href="#" class="btn btn-round btn-default disabled">Current Version</a>
-                      </td>
-                      <td class="text-center">
-                        <a target="_blank" href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=ad-upgrade-pro" class="btn btn-round btn-primary">Upgrade to PRO</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                        <i class="fas fa-chart-pie"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                    <span class="text-nowrap">Since last week</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                      <span class="h2 font-weight-bold mb-0">924</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                    <span class="text-nowrap">Since yesterday</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                        <i class="fas fa-percent"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col">
+          <div class="card shadow border-0">
+              <div class="text-center">
+                <div  style="height: 600px;" >
+                <h1 class='text-upercase'>Bibs farm sales</h1>
+                <br>
+              
+                <div class="text-right" >
+                  <form action="sales.php" method="post">
+                  <button type="submit" name='sales' style="width: 20%; margin-left:20px;" class="btn btn-primary btn-user btn-block btn-dark">Display sales</button>
+                  </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <table class="table" style="width: 80%; margin:auto;">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col">Username </th>
+                                      
+                                      <th scope="col">Produce Name </th>
+                                      <th scope="col">Produce Quantity </th>
+                                      <th scope="col">Produce Total </th>                                               
+                                    </tr>
+                                 
+                  <?php
+
+                        if(isset($_POST['sales'])){
+                          $sql = 'SELECT * FROM SALES ';
+                          $result = mysqli_query($conn,$sql);
+                          if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_array($result))
+                                {
+                                  ?>
+                               <tr>
+                                      <td scope="row"><?php echo $row['username'] ?></td>
+                                      
+                                      <td> <?php echo $row['produceName'] ?> </td>
+                                      <td><?php echo $row['Quantity'] ?></td>
+                                      <td>KSH:<?php echo $row['Total'] ?></td>
+                                      </tr>                                
+                            <?php
+                                }
+                              }
+                      }
+                  ?>
+                                  </thead>
+                </table>
+               
+                </div>
+                </div>
+ 
+               
+                 
+            </div>
+
+      
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <!-- Footer -->
       <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">

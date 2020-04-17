@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 //connection to database 
 include('connect.php');
 
@@ -9,6 +10,7 @@ if (isset($_GET['login'])) {
   $password = mysqli_real_escape_string($conn, $_GET['password']);
 
   $_SESSION['username'] = $username; 
+  
   // $_SESSION['userid'] = $userID;
 
   // $sql = 'SELECT * FROM CUSTOMER WHERE'

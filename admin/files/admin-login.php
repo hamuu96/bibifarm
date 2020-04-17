@@ -1,12 +1,13 @@
 <?php
 
 include('../../connect.php');
+session_start();
 
 if (isset($_GET['login'])) {
   $username = mysqli_real_escape_string($conn, $_GET['username']);
   $password = mysqli_real_escape_string($conn, $_GET['password']);
 
-  $_SESSION['username'] = $username; 
+   
   // $_SESSION['userid'] = $userID;
 
   // $sql = 'SELECT * FROM CUSTOMER WHERE'
@@ -34,7 +35,8 @@ if (isset($_GET['login'])) {
     $count = mysqli_num_rows($exec);
    
     if($count > 0){
-      header('Location:index.html');
+      $_SESSION['ausername'] = $username;
+      header('Location:admin-index.php');
       
     }
     else{
@@ -63,7 +65,7 @@ if (isset($_GET['login'])) {
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href="../assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  <link href="/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
   <link href="../assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="../assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
@@ -74,7 +76,7 @@ if (isset($_GET['login'])) {
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div class="container px-4">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="../admin-index.php">
           <img src="../assets/img/brand/white.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +87,7 @@ if (isset($_GET['login'])) {
           <div class="navbar-collapse-header d-md-none">
             <div class="row">
               <div class="col-6 collapse-brand">
-                <a href="../index.html">
+                <a href="../admin-index.php">
                   <img src="../assets/img/brand/blue.png">
                 </a>
               </div>
@@ -100,25 +102,25 @@ if (isset($_GET['login'])) {
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../index.html">
+              <a class="nav-link nav-link-icon" href="../admin-index.php">
                 <i class="ni ni-planet"></i>
                 <span class="nav-link-inner--text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/register.html">
+              <a class="nav-link nav-link-icon" href="../files/admin-register.php">
                 <i class="ni ni-circle-08"></i>
                 <span class="nav-link-inner--text">Register</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/login.html">
+              <a class="nav-link nav-link-icon" href="../files/admin-login.php">
                 <i class="ni ni-key-25"></i>
                 <span class="nav-link-inner--text">Login</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/profile.html">
+              <a class="nav-link nav-link-icon" href="../files/profile.html">
                 <i class="ni ni-single-02"></i>
                 <span class="nav-link-inner--text">Profile</span>
               </a>

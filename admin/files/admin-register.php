@@ -1,6 +1,7 @@
 <?php 
 
 include('../../connect.php');
+session_start();
 
 
 if(isset($_POST['register'])){
@@ -13,7 +14,7 @@ if(isset($_POST['register'])){
   $username = $_POST['username'];
 
 
-  // $_SESSION['ausername'] = $username;
+   $_SESSION['ausername'] = $username;
 
 //check if any registration fields are empty
 if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and $username !=''  and $address !=''  and $phone !=''){
@@ -83,7 +84,7 @@ else{
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div class="container px-4">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="../admin-index.php">
           <img src="../assets/img/brand/white.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +95,7 @@ else{
           <div class="navbar-collapse-header d-md-none">
             <div class="row">
               <div class="col-6 collapse-brand">
-                <a href="../index.html">
+                <a href="../admin-index.php">
                   <img src="../assets/img/brand/blue.png">
                 </a>
               </div>
@@ -109,25 +110,25 @@ else{
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../index.html">
+              <a class="nav-link nav-link-icon" href="../admin-index.php">
                 <i class="ni ni-planet"></i>
                 <span class="nav-link-inner--text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/register.html">
+              <a class="nav-link nav-link-icon" href="../files/admin-register.php">
                 <i class="ni ni-circle-08"></i>
                 <span class="nav-link-inner--text">Register</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/login.html">
+              <a class="nav-link nav-link-icon" href="../files/admin-login.php">
                 <i class="ni ni-key-25"></i>
                 <span class="nav-link-inner--text">Login</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/profile.html">
+              <a class="nav-link nav-link-icon" href="../files/admin-profile.php">
                 <i class="ni ni-single-02"></i>
                 <span class="nav-link-inner--text">Profile</span>
               </a>
