@@ -143,7 +143,7 @@ else{
 $sql_Einventory = 'CREATE TABLE IF NOT EXISTS EINVENTORY(
     equipID int(5) auto_increment primary key, 
     e_name varchar(20), 
-    e_quantity int(4), 
+    e_quantity int(10), 
     e_price varchar(10)
 )';
 

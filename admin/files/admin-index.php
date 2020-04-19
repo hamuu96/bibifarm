@@ -4,6 +4,7 @@ session_start();
 include('../../connect.php');
 
 //session_destroy();
+$_SESSION['ausername'];
 if(empty($_SESSION['ausername'])){
   header('location:admin-login.php');
 }
@@ -41,7 +42,8 @@ if(empty($_SESSION['ausername'])){
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./admin-index.php">
-        <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      <h2 > Admin Panel</h2>
+        <!-- <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -88,6 +90,7 @@ if(empty($_SESSION['ausername'])){
             <div class="dropdown-divider"></div>
             <a href="#!" class="dropdown-item">
               <i class="ni ni-user-run"></i>
+              
               <span>Logout</span>
             </a>
           </div>
@@ -135,17 +138,17 @@ if(empty($_SESSION['ausername'])){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./files/inventory.php">
+            <a class="nav-link " href="./inventory.php">
               <i class="ni ni-pin-3 text-orange"></i> Inventory
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./files/admin-profile.php">
+            <a class="nav-link " href="./admin-profile.php">
               <i class="ni ni-single-02 text-yellow"></i> User profile
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="./files/sales.php">
+            <a class="nav-link " href="./sales.php">
               <i class="ni ni-bullet-list-67 text-red"></i> Sales
             </a>
           </li>
@@ -155,7 +158,7 @@ if(empty($_SESSION['ausername'])){
             </a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="./files/admin-register.php">
+            <a class="nav-link" href="./admin-register.php">
               <i class="ni ni-circle-08 text-pink"></i> Register
             </a>
           </li>
@@ -274,8 +277,7 @@ if(empty($_SESSION['ausername'])){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                   
                   </p>
                 </div>
               </div>
@@ -286,7 +288,17 @@ if(empty($_SESSION['ausername'])){
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <?php
+
+                                                  
+                            $sql = 'SELECT * FROM CUSTOMER ';
+                            $result = mysqli_query($conn,$sql);
+                            if(mysqli_num_rows($result) > 0){
+                                
+                                }
+
+                            ?>
+                            <span class="h2 font-weight-bold mb-0"><?php echo mysqli_num_rows($result);?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -295,8 +307,7 @@ if(empty($_SESSION['ausername'])){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last week</span>
+                    
                   </p>
                 </div>
               </div>
@@ -307,17 +318,28 @@ if(empty($_SESSION['ausername'])){
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                                     
+                  <?php
+
+                      
+                        $sql = 'SELECT * FROM SALES ';
+                        $result = mysqli_query($conn,$sql);
+                        if(mysqli_num_rows($result) > 0){
+                             
+                            }
+                      
+                   ?>
+                      <span class="h2 font-weight-bold mb-0"><?php echo mysqli_num_rows($result);?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
+
+                          <i class="fas fa-users"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                    <span class="text-nowrap">Since yesterday</span>
+                    
                   </p>
                 </div>
               </div>
@@ -337,8 +359,7 @@ if(empty($_SESSION['ausername'])){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    
                   </p>
                 </div>
               </div>
@@ -376,9 +397,45 @@ if(empty($_SESSION['ausername'])){
               </div>
             </div>
             <div class="card-body">
-              <!-- Chart -->
+              
               <div class="chart">
-                <!-- Chart wrapper -->
+              <!-- <div class="container" style='width:20%;'>
+
+              
+<table class="table" >
+                      <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Username </th>
+                          
+                          <th scope="col">Produce Name </th>
+                          <th scope="col">Produce Quantity </th>
+                          <th scope="col">Produce Total </th>                                               
+                        </tr>
+                     
+      <?php
+
+            
+              $sql = 'SELECT * FROM SALES ';
+              $result = mysqli_query($conn,$sql);
+              if(mysqli_num_rows($result) > 0){
+                    while($row = mysqli_fetch_array($result))
+                    {
+                      ?>
+                   <tr>
+                          <td scope="row"><?php echo $row['username'] ?></td>
+                          
+                          <td> <?php echo $row['produceName'] ?> </td>
+                          <td><?php echo $row['Quantity'] ?></td>
+                          <td>KSH:<?php echo $row['Total'] ?></td>
+                          </tr>                                
+                <?php
+                    }
+                  }
+          
+      ?>
+                      </thead>
+    </table>
+    </div> -->
                 <canvas id="chart-sales" class="chart-canvas"></canvas>
               </div>
             </div>
@@ -390,12 +447,14 @@ if(empty($_SESSION['ausername'])){
               <div class="row align-items-center">
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h2 class="mb-0">Total orders</h2>
+                  <h2 class="mb-0">Total orders</h2>               
                 </div>
+                
               </div>
+              
             </div>
             <div class="card-body">
-              <!-- Chart -->
+            
               <div class="chart">
                 <canvas id="chart-orders" class="chart-canvas"></canvas>
               </div>

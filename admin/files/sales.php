@@ -2,6 +2,10 @@
 
 include('../../connect.php');
 session_start();
+$_SESSION['ausername'];
+if(empty($_SESSION['ausername'])){
+  header('location:admin-login.php');
+}
 
   ?>
 <!DOCTYPE html>
@@ -33,7 +37,8 @@ session_start();
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="../admin-index.php">
-        <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      <h2 > Admin Panel</h2>
+        <!-- <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -117,7 +122,7 @@ session_start();
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item  active ">
-            <a class="nav-link " href="../admin-index.php">
+            <a class="nav-link " href="../files/admin-index.php">
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
@@ -155,9 +160,9 @@ session_start();
         <!-- Divider -->
         <hr class="my-3">
         <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Documentation</h6>
+        <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
         <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
+        <!-- <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
             <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
               <i class="ni ni-spaceship"></i> Getting started
@@ -180,7 +185,7 @@ session_start();
               <i class="ni ni-send text-dark"></i> Upgrade to PRO
             </a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </nav>
@@ -266,8 +271,7 @@ session_start();
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                   
                   </p>
                 </div>
               </div>
@@ -278,7 +282,17 @@ session_start();
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <?php
+
+                                                  
+                            $sql = 'SELECT * FROM CUSTOMER ';
+                            $result = mysqli_query($conn,$sql);
+                            if(mysqli_num_rows($result) > 0){
+                                
+                                }
+
+                            ?>
+                            <span class="h2 font-weight-bold mb-0"><?php echo mysqli_num_rows($result);?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -287,8 +301,7 @@ session_start();
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last week</span>
+                    
                   </p>
                 </div>
               </div>
@@ -299,17 +312,28 @@ session_start();
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                                     
+                  <?php
+
+                      
+                        $sql = 'SELECT * FROM SALES ';
+                        $result = mysqli_query($conn,$sql);
+                        if(mysqli_num_rows($result) > 0){
+                             
+                            }
+                      
+                   ?>
+                      <span class="h2 font-weight-bold mb-0"><?php echo mysqli_num_rows($result);?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
+
+                          <i class="fas fa-users"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                    <span class="text-nowrap">Since yesterday</span>
+                    
                   </p>
                 </div>
               </div>
@@ -329,8 +353,7 @@ session_start();
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    
                   </p>
                 </div>
               </div>

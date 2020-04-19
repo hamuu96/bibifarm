@@ -2,19 +2,20 @@
 session_start();
 //session_destroy();
 include('connect.php');
-// $_SESSION['username']; 
-// $_SESSION['userid'];
 
-
-
-// if(isset($_POST["buy"]))
-// {
-// 
-// if(!empty($_SESSION["Shopping_Cart"]))
-// 	{
-
-// header("Location:login.php");
-// }}
+//if user in not logged in they are redirected to the login page
+if(empty($_SESSION['username'])){
+	header('Location:login.php');
+}
+//when user is inactive for more than 30 mins he is redirected back to the login page
+if (!isset($_SESSION['CREATED'])) {
+    $_SESSION['CREATED'] = time();
+} 
+else if (time() - $_SESSION['CREATED'] > 1800) {
+    session_regenerate_id(true);    
+    $_SESSION['CREATED'] = time();  
+	header('Location:login.php');
+}
 
 if(isset($_POST["add"]))
 {
@@ -31,7 +32,7 @@ if(isset($_POST["add"]))
 				'produce_quantity'		=>	$_POST["quantity"]
 			);
 			$_SESSION["Shopping_Cart"][$count] = $item_array;
-			print_r($_SESSION['username']);
+			
 		}
 		else
 		{
@@ -80,7 +81,7 @@ if(isset($_GET["action"]))
         *{
             font-family: 'Titillium Web', sans-serif;
         }
-        .product{
+        .produce{
             border: 1px solid #eaeaec;
             margin: -1px 19px 3px -1px;
             padding: 10px;
@@ -91,7 +92,7 @@ if(isset($_GET["action"]))
             text-align: center;
 			padding-top:10px;
         }
-        .title2{
+        .cart{
             text-align: center;
             color: #66afe9;
             background-color: #efefef;
@@ -112,7 +113,7 @@ if(isset($_GET["action"]))
 	<body>
 		
 	<div class="container" style="width: 65%">
-		<h2>Shopping Cart</h2>
+		<h2>BIBS PRODUCE CART</h2>
 			<?php
 				$query = "SELECT * FROM PRODUCE ORDER BY produceID ASC";
 				$result = mysqli_query($conn, $query);
@@ -121,9 +122,10 @@ if(isset($_GET["action"]))
 					while($row = mysqli_fetch_array($result))
 					{
 				?>
+				
 			<div class="col-md-3">
 				<form method="post" action="buy.php?action=add&id=<?php echo $row["produceID"]; ?>">
-				<div class="product">
+				<div class="produce">
                                 <img src="<?php echo $row["img"]; ?>" class="img-responsive">
                                 <h5 class="text-info"><?php echo $row["produceName"]; ?></h5>
                                 <h5 class="text-danger"><?php echo $row["producePrice"]; ?></h5>
@@ -135,21 +137,23 @@ if(isset($_GET["action"]))
                             </div>
 				</form>
 			</div>
+			
 			<?php
+			
 					}
 				}
 			?>
 			<div style="clear:both"></div>
 			<br />
-			<h3 class="title2">Shopping Cart Details</h3>
+			<h3 class="cart">CART</h3>
         <div class="table-responsive">
             <table class="table table-bordered">
             <tr>
-                <th width="30%">Product Name</th>
-                <th width="10%">Quantity</th>
-                <th width="13%">Price Details</th>
+                <th width="33%">Product Name</th>
+                <th width="15%">Quantity</th>
+                <th width="14%">Price Details</th>
                 <th width="10%">Total Price</th>
-                <th width="17%">Remove Item</th>
+                <th width="19%">Remove Item</th>
             </tr>
 					<?php
 					if(!empty($_SESSION["Shopping_Cart"]))
@@ -216,17 +220,3 @@ if(isset($_GET["action"]))
 	<br />
 	</body>
 </html>
-
-<?php
-//If you have use Older PHP Version, Please Uncomment this function for removing error 
-
-/*function array_column($array, $column_name)
-{
-	$output = array();
-	foreach($array as $keys => $values)
-	{
-		$output[] = $values[$column_name];
-	}
-	return $output;
-}*/
-?>

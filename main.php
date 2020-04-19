@@ -9,6 +9,15 @@ else{
   header("location:alogin.php");
 }
 
+//when user is inactive for more than 30 mins he is redirected back to the login page
+if (!isset($_SESSION['CREATED'])) {
+  $_SESSION['CREATED'] = time();
+} 
+else if (time() - $_SESSION['CREATED'] > 1800) {
+  session_regenerate_id(true);    
+  $_SESSION['CREATED'] = time();  
+header('Location:login.php');
+}
 
 
 

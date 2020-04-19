@@ -2,6 +2,10 @@
 
 session_start();
 include('../../connect.php');
+$_SESSION['ausername'];
+if(empty($_SESSION['ausername'])){
+  header('location:admin-login.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +37,8 @@ include('../../connect.php');
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="../index.html">
-        <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      <h2 > Admin Panel</h2>
+        <!-- <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -122,12 +127,12 @@ include('../../connect.php');
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="../files/icons.html">
+            <a class="nav-link " href="../icons.html">
               <i class="ni ni-planet text-blue"></i> Icons
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="../files/inventory.php">
+            <a class="nav-link " href="../inventory.php">
               <i class="ni ni-pin-3 text-orange"></i> Inventory
             </a>
           </li>
@@ -137,7 +142,7 @@ include('../../connect.php');
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="../files/sales.php">
+            <a class="nav-link " href="../sales.php">
               <i class="ni ni-bullet-list-67 text-red"></i> Sales
             </a>
           </li>
@@ -147,7 +152,7 @@ include('../../connect.php');
             </a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="../files/admin-register.php">
+            <a class="nav-link" href="../admin-register.php">
               <i class="ni ni-circle-08 text-pink"></i> Register
             </a>
           </li>
@@ -155,9 +160,9 @@ include('../../connect.php');
         <!-- Divider -->
         <hr class="my-3">
         <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Documentation</h6>
+        <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
         <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
+        <!-- <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
             <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
               <i class="ni ni-spaceship"></i> Getting started
@@ -180,7 +185,7 @@ include('../../connect.php');
               <i class="ni ni-send text-dark"></i> Upgrade to PRO
             </a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </nav>

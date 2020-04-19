@@ -2,6 +2,8 @@
 
 include('../../connect.php');
 session_start();
+// session_destroy();
+// print_r($_SESSION['ausername']);
 
 if (isset($_GET['login'])) {
   $username = mysqli_real_escape_string($conn, $_GET['username']);
@@ -77,7 +79,8 @@ if (isset($_GET['login'])) {
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div class="container px-4">
         <a class="navbar-brand" href="../admin-index.php">
-          <img src="../assets/img/brand/white.png" />
+          <h2 style="color:#ffff;">Bibs farm admin panel</h2>
+          <!-- <img src="../assets/img/brand/white.png" /> -->
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -101,30 +104,30 @@ if (isset($_GET['login'])) {
           </div>
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link nav-link-icon" href="../admin-index.php">
                 <i class="ni ni-planet"></i>
                 <span class="nav-link-inner--text">Dashboard</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link nav-link-icon" href="../files/admin-register.php">
                 <i class="ni ni-circle-08"></i>
                 <span class="nav-link-inner--text">Register</span>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link nav-link-icon" href="../files/admin-login.php">
                 <i class="ni ni-key-25"></i>
                 <span class="nav-link-inner--text">Login</span>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link nav-link-icon" href="../files/profile.html">
                 <i class="ni ni-single-02"></i>
                 <span class="nav-link-inner--text">Profile</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -161,7 +164,7 @@ if (isset($_GET['login'])) {
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
                     <input class="form-control" placeholder="Username" name='username' type="text">
                   </div>
@@ -183,7 +186,7 @@ if (isset($_GET['login'])) {
           </div>
           <div class="row mt-3">
           <div class="custom-control custom-control-alternative custom-checkbox">
-                    <a class="small" href="admin-register.php">Dont have an account!</a>  
+                    
            </div>
            
           </div>
