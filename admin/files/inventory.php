@@ -1,27 +1,44 @@
 <?php 
 session_start();
+//session_destroy();
 include('../../connect.php');
+$_SESSION['ausername'];
+// session_destroy();
+if(empty($_SESSION['ausername'])){
+  header('location:admin-login.php');
+}
+$new_qunt = 0;
+$new= 0;
 
 if(isset($_POST['add'])){
+  
   $e_name = $_POST['equipment'];
   $e_price = $_POST['price']; 
-  $e_quantity = $_POST['quantity']; 
-
-  // $_SESSION['quantity'] = $e_quantity;
-
+  $e_quantity = (int) $_POST['quantity']; 
+ 
   
+  // $new_qunt = $new_qunt + $e_quantity;
+  $new_qunt = $e_quantity ;
+ 
 
-  $sql1  = mysqli_query($conn, "SELECT * FROM  EINVENTORY  WHERE e_name='$e_name' ");
-  
+
+  $sql1  = mysqli_query($conn, "SELECT `e_quantity` FROM  EINVENTORY  WHERE e_name='$e_name' ");
+  if($row = mysqli_fetch_assoc($sql1))
+                        {
+                              $new = $row['e_quantity'];
+                        }
+  $equip = mysqli_fetch_field($sql1);
 
                   if ($sql1){
                     $count = mysqli_num_rows($sql1);
                     if($count>=1){
-                      $query=  mysqli_query($conn, "update EINVENTORY set e_quantity='$e_quantity'");
+                      $query=  mysqli_query($conn, "update EINVENTORY set e_quantity=$new_qunt + $new");
+                      
                           if($query){
-                            // $total = $e_quantity + $_SESSION['quantity']; 
+                            
+                            
                             ?> 
-                            <div class='alert alert-warning' style="margin-top:50px; margin-left:120px; width:50%; text-align:center;"><?php echo "The $e_name quantity has been updated"?></div>
+                            <div class='alert alert-warning' style="margin-top:50px; padding-left:200px; margin-left:120px; width:50%; text-align:center;"><?php echo "$e_name quantity have successfully updated"?></div>
    
                           <?php
                       }
@@ -49,6 +66,7 @@ if(isset($_POST['add'])){
 
 
                 }
+                
 
 ?>
 <!DOCTYPE html>
@@ -80,7 +98,8 @@ if(isset($_POST['add'])){
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="../admin-index.php">
-        <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      <h2 > Admin Panel</h2>
+        <!-- <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -99,8 +118,7 @@ if(isset($_POST['add'])){
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg
-">
+                <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg">
               </span>
             </div>
           </a>
@@ -164,7 +182,7 @@ if(isset($_POST['add'])){
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item  active ">
-            <a class="nav-link " href="../admin-index.php">
+            <a class="nav-link " href="../files/admin-index.php">
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
@@ -194,7 +212,7 @@ if(isset($_POST['add'])){
             </a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="../files/admin-register.php">
+            <a class="nav-link" href="./admin-register.php">
               <i class="ni ni-circle-08 text-pink"></i> Register
             </a>
           </li>
@@ -202,9 +220,9 @@ if(isset($_POST['add'])){
         <!-- Divider -->
         <hr class="my-3">
         <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Documentation</h6>
+        <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
         <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
+        <!-- <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
             <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
               <i class="ni ni-spaceship"></i> Getting started
@@ -220,7 +238,7 @@ if(isset($_POST['add'])){
               <i class="ni ni-ui-04"></i> Components
             </a>
           </li>
-        </ul>
+        </ul> -->
         <ul class="navbar-nav">
           <li class="nav-item active active-pro">
             <a class="nav-link" href="../files/upgrade.html">
@@ -313,8 +331,7 @@ if(isset($_POST['add'])){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                   
                   </p>
                 </div>
               </div>
@@ -325,7 +342,18 @@ if(isset($_POST['add'])){
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <?php
+
+                                                  
+                            $sql = 'SELECT * FROM CUSTOMER ';
+                            $result = mysqli_query($conn,$sql);
+                            if(mysqli_num_rows($result) > 0){
+                                
+                                }
+
+                            ?>
+                            
+                            <span class="h2 font-weight-bold mb-0"><?php echo mysqli_num_rows($result);?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -334,8 +362,7 @@ if(isset($_POST['add'])){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last week</span>
+                    
                   </p>
                 </div>
               </div>
@@ -346,17 +373,28 @@ if(isset($_POST['add'])){
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                                     
+                  <?php
+
+                      
+                        $sql = 'SELECT * FROM SALES ';
+                        $result = mysqli_query($conn,$sql);
+                        if(mysqli_num_rows($result) > 0){
+                             
+                            }
+                      
+                   ?>
+                      <span class="h2 font-weight-bold mb-0"><?php echo mysqli_num_rows($result);?></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
+
+                          <i class="fas fa-users"></i>
                       </div>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                    <span class="text-nowrap">Since yesterday</span>
+                    
                   </p>
                 </div>
               </div>
@@ -376,8 +414,7 @@ if(isset($_POST['add'])){
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    
                   </p>
                 </div>
               </div>
@@ -443,7 +480,7 @@ if(isset($_POST['add'])){
                                     <th scope="row"><?php echo $row['equipID'] ?></th>
                                     <td> <?php echo $row['e_name'] ?> </td>
                                     <td><?php echo $row['e_quantity'] ?></td>
-                                    <td>@<?php echo $row['e_price'] ?></td>
+                                    <td>KSH <?php echo $row['e_price'] ?></td>
                                   </tr>
                   
                 
