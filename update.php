@@ -17,6 +17,7 @@ else if (time() - $_SESSION['CREATED'] > 1800) {
   session_regenerate_id(true);    
   $_SESSION['CREATED'] = time();  
 header('Location:login.php');
+unset($_SESSION['CREATED']);
 }
 
 if(isset($_POST['update'])){

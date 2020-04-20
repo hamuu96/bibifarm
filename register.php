@@ -4,14 +4,13 @@ include('connect.php');
 
 
 if(isset($_POST['register'])){
-  $firstname = $_POST['fname'];
-  $lastname = $_POST['lname'];
+  $firstname = (string) $_POST['fname'];
+  $lastname = (string)$_POST['lname'];
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $phone = $_POST['phone'];
   $password = md5(mysqli_real_escape_string($conn, $_POST['password'])); 
-  $address = $_POST['address'];
-  $username = $_POST['username'];
-
+  $address = (string) $_POST['address'];
+  $username = (string) $_POST['username'];
 
   $_SESSION['ausername'] = $username;
 
@@ -23,12 +22,15 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
             if ($sql1){
               $count = mysqli_num_rows($sql1);
               if($_SESSION['ausername']== 'admin'){
-                // print_r($_SESSION['ausername']);
-                header('Location:admin/examples/register.html');
+                header('Location:admin/files/register.html');
               }
               else if($count>=1)
                 {
-                echo"name already exists";
+                  ?>
+                  <div class="alert alert-danger" role="alert" style='margin-top:20px; text-align:center; text-transform:uppercase;'>
+                  name already exits
+                </div>
+                <?php
               }
               else
                 {
@@ -36,10 +38,7 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
                   $sql = "INSERT INTO CUSTOMER (firstname, lastname, phoneNo, email, c_address, username, password)
                  VALUES ( '$firstname', '$lastname', '$phone', '$email', '$address', '$username', '$password')";
                   $exec = mysqli_query($conn, $sql);
-                  
-                 
-                  // echo 'successful'.mysqli_error($conn);
-                  //  header('Location:login.php');
+                
                 }
 
             }
@@ -51,7 +50,7 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
 }
 else{
   ?>
-    <div class="alert alert-danger" role="alert" >
+    <div class="alert alert-danger" role="alert" style='margin-top:20px; text-align:center; text-transform:uppercase;'>
   please fill the form
 </div>
 <?php

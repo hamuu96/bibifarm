@@ -6,6 +6,20 @@ $_SESSION['ausername'];
 if(empty($_SESSION['ausername'])){
   header('location:admin-login.php');
 }
+//when user is inactive for more than 30 mins he is redirected back to the login page
+if (!isset($_SESSION['CREATED'])) {
+  $_SESSION['CREATED'] = time();
+} 
+else if (time() - $_SESSION['CREATED'] > 1800) {
+  session_regenerate_id(true);    
+  $_SESSION['CREATED'] = time();  
+header('Location:admin-login.php');
+unset($_SESSION['CREATED']);
+}
+
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -260,7 +274,7 @@ if(empty($_SESSION['ausername'])){
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello Jesse</h1>
             <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-            <a href="#!" class="btn btn-info">Edit profile</a>
+            <button type="submit" class="btn btn-info">Edit Profile</button>
           </div>
         </div>
       </div>
