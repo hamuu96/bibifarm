@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+
 include('connect.php');
 
 
@@ -22,17 +23,20 @@ unset($_SESSION['CREATED']);
 
 if(isset($_POST['update'])){
 
-    $username = $_SESSION['username'];
+    $session_username = $_SESSION['username'];
+   print_r($session_username);
+    $username = $_POST['username'];
     $firstname = $_POST['fname'];
     $lastname = $_POST['lname'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = md5(mysqli_real_escape_string($conn, $_POST['password'])); 
     $address = $_POST['address'];
     $phone = $_POST['phone'];
 
 
     $query= "update CUSTOMER set firstname='$firstname', lastname='$lastname', email='$email',
-    phoneNo=$phone, c_address='$address',  password='$password' where username='$username' ";
+    phoneNo='$phone', c_address='$address',username='$username', password='$password' where username='$session_username' ";
+    echo $query;
 
     $exec = mysqli_query($conn, $query);
     if(!$exec){
@@ -40,7 +44,7 @@ if(isset($_POST['update'])){
     }
     else{
       ?> 
-      <div class='alert alert-success' style="margin-top:70px; text-align:center;" ><?php echo 'successful update on user:  '.$username?>
+      <div class='alert alert-success' style="margin-top:70px; text-align:center;" ><?php echo 'successful update on user:  '.$session_username?>
      
       </div>
      
@@ -50,7 +54,7 @@ if(isset($_POST['update'])){
 
 
 
-
+ 
 
 ?>
 
