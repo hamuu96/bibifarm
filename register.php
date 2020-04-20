@@ -38,6 +38,10 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
                   $sql = "INSERT INTO CUSTOMER (firstname, lastname, phoneNo, email, c_address, username, password)
                  VALUES ( '$firstname', '$lastname', '$phone', '$email', '$address', '$username', '$password')";
                   $exec = mysqli_query($conn, $sql);
+                  if($exec){
+                    header('Location:login.php');
+                  }
+              
                 
                 }
 
@@ -120,7 +124,7 @@ else{
                     <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Telephone No " name='phone'>
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="password" name='password'>
+                    <input type="password" class="form-control form-control-user" id="exampleLastName" placeholder="password" name='password'>
                   </div>
                 </div>
                 

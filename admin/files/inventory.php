@@ -198,7 +198,7 @@ if(isset($_POST['add'])){
           </li>
           <li class="nav-item">
             <a class="nav-link " href="../files/icons.html">
-              <i class="ni ni-planet text-blue"></i> Icons
+              <i class="ni ni-circle-08 text-blue"></i> Icons
             </a>
           </li>
           <li class="nav-item">

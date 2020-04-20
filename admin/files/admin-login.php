@@ -9,10 +9,7 @@ if (isset($_GET['login'])) {
   $username = mysqli_real_escape_string($conn, $_GET['username']);
   $password = mysqli_real_escape_string($conn, $_GET['password']);
 
-   
-  // $_SESSION['userid'] = $userID;
 
-  // $sql = 'SELECT * FROM CUSTOMER WHERE'
 
   if (empty($username)) {
   	echo 'enter username';
@@ -104,30 +101,14 @@ if (isset($_GET['login'])) {
           </div>
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../admin-index.php">
-                <i class="ni ni-planet"></i>
-                <span class="nav-link-inner--text">Dashboard</span>
-              </a>
-            </li> -->
+            
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../files/admin-register.php">
+              <a class="nav-link nav-link-icon" href="./admin-register.php">
                 <i class="ni ni-circle-08"></i>
                 <span class="nav-link-inner--text">Register</span>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../files/admin-login.php">
-                <i class="ni ni-key-25"></i>
-                <span class="nav-link-inner--text">Login</span>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../files/profile.html">
-                <i class="ni ni-single-02"></i>
-                <span class="nav-link-inner--text">Profile</span>
-              </a>
-            </li> -->
+           
           </ul>
         </div>
       </div>
@@ -186,7 +167,7 @@ if (isset($_GET['login'])) {
           </div>
           <div class="row mt-3">
           <div class="custom-control custom-control-alternative custom-checkbox">
-                    
+          <!-- <a class="small" href="admin-register.php">Dont have an account? register!</a>   -->
            </div>
            
           </div>
