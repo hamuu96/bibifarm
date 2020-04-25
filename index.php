@@ -155,13 +155,32 @@ else{
     echo 'error'.mysqli_error($conn);
 }
 
+$sql_checkout = 'CREATE TABLE IF NOT EXISTS CHECKOUT(
+    cid int(5) auto_increment primary key, 
+    cardno int(20) not null, 
+    name varchar(40) not null, 
+    baddress varchar(50) not null, 
+    cvc int(5) not null, 
+    exp date, 
+    dob date
+    
+)';
+
+$exec_check = mysqli_query( $conn, $sql_checkout); 
+if($exec_check){
+    //echo 'successul';
+}
+else{
+    echo 'error'.mysqli_error($conn);
+}
+
  if(!$exec_iProduce  and !$exec_tomatoes and !$exec_green and !$insert_water and !$insert_pepers and  !$insert_avacado  and 
    !mysqli_query($conn, $create_produce) and !$exec_client and !$exec_sales and !$exec_care and !$exec_admin  and !$exec_einven){
     //  echo 'error'.mysqli_error($conn);
  }
  else{
       //echo 'successful'.mysqli_error($conn);
-     header('Location:main.php');
+      header('Location:main.php');
       exit;
  }
 

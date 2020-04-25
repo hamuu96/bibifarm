@@ -24,7 +24,7 @@ unset($_SESSION['CREATED']);
 if(isset($_POST['update'])){
 
     $session_username = $_SESSION['username'];
-   print_r($session_username);
+  //  print_r($session_username);
     $username = $_POST['username'];
     $firstname = $_POST['fname'];
     $lastname = $_POST['lname'];

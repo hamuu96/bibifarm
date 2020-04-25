@@ -61,18 +61,33 @@ if(isset($_GET["action"]))
 			if($values["produce_id"] == $_GET["id"])
 			{
 				unset($_SESSION["Shopping_Cart"][$keys]);
-				echo '<script>alert("Item Removed")</script>';
-				echo '<script>window.location="buy.php"</script>';
+				?>
+				<div class="alert alert-success" role="alert" style='margin-top:20px; text-align:center; text-transform:uppercase;'>
+			item removed from cart
+			</div>
+			<?php
 			}
 		}
 	}
 }
-
+if(!empty($_SESSION["Shopping_Cart"]))
+{
+	if(isset($_POST['check'])){
+		header('Location:checkout.php');
+	}
+		}
+else{
+	?>
+	<div class="alert alert-danger" role="alert" style='margin-top:20px; text-align:center; text-transform:uppercase;'>
+ please add item to cart before checking out
+</div>
+<?php
+}
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>bibs farm</title>
+		<title>Bibs farm</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -214,7 +229,9 @@ if(isset($_GET["action"]))
 				</table>
 				<form action="buy.php" method="post">
 				<button class="btn btn-primary" type="submit" name='buy'>buy produce</button>
+				<button class="btn btn-success" type="submit" style='margin-left:20px;' name='check'>check out</button>
 				</form>
+				
 			</div>
 		</div>
 	</div>

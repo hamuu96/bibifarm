@@ -70,7 +70,7 @@ if(isset($_POST['logout'])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>BIBI ORGANIC FARM</title>
+  <title>Bibs ORGANIC FARM</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,7 @@ if(isset($_POST['logout'])){
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">BIBI FARM</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Bibs FARM</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -132,7 +132,7 @@ if(isset($_POST['logout'])){
   <header class="masthead">
     <div class="container">
       <div class="intro-text">
-        <div class="intro-lead-in">Welcome To Bibi Farm!</div>
+        <div class="intro-lead-in">Welcome To Bibs Farm!</div>
         <div class="intro-heading text-uppercase">HOME OF FRESH ORGANIC PRODUCE</div>
         <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#products">Shop With Us</a>
       </div>
