@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+*{
+    font-family: 'Lato', sans-serif;
+}
+.produce{
+    border: 1px solid #110f11;
+    margin: -1px 19px 3px -1px;
+    padding: 10px;
+    text-align: center;
+    background-color: #d4a0a0;
+}
+table, th, tr{
+    text-align: center;
+    padding-top:10px;
+}
+.cart{
+    text-align: center;
+    color: #66afe9;
+    background-color: #1a1919;
+    padding: 5%;
+}
+h2{
+    text-align: center;
+    color: #66afe9;
+    background-color: #efefef;
+    padding: 2%;
+}
+table th{
+    background-color: #efefef;
+}

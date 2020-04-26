@@ -37,7 +37,11 @@ if(isset($_POST["add"]))
 		}
 		else
 		{
-			echo '<script>alert("Item Already Added")</script>';
+			?>
+				<div class="alert alert-success" role="alert" style='margin-top:20px; text-align:center; text-transform:uppercase;'>
+			item already in the cart
+			</div>
+			<?php
 		}
 	}
 	else
@@ -91,39 +95,7 @@ else{
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<style>
-        @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
-
-        *{
-            font-family: 'Titillium Web', sans-serif;
-        }
-        .produce{
-            border: 1px solid #eaeaec;
-            margin: -1px 19px 3px -1px;
-            padding: 10px;
-            text-align: center;
-            background-color: #efefef;
-        }
-        table, th, tr{
-            text-align: center;
-			padding-top:10px;
-        }
-        .cart{
-            text-align: center;
-            color: #66afe9;
-            background-color: #efefef;
-            padding: 2%;
-        }
-        h2{
-            text-align: center;
-            color: #66afe9;
-            background-color: #efefef;
-            padding: 2%;
-        }
-        table th{
-            background-color: #efefef;
-        }
-    </style>
+		<link href="buy.css" rel="stylesheet">
 
 	</head>
 	<body>
@@ -166,9 +138,9 @@ else{
             <table class="table table-bordered">
             <tr>
                 <th width="33%">Product Name</th>
-                <th width="15%">Quantity</th>
-                <th width="14%">Price Details</th>
-                <th width="10%">Total Price</th>
+                <th width="10%">Quantity</th>
+                <th width="10%">Price Details</th>
+                <th width="12%">Total Price</th>
                 <th width="19%">Remove Item</th>
             </tr>
 					<?php

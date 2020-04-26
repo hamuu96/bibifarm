@@ -97,7 +97,7 @@ if(isset($_POST['update'])){
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                <h1 class="h4 text-gray-900 mb-4">update profile</h1>
               </div>
               <form class="user" method='post' action='update.php'>
                 <div class="form-group row">
@@ -133,9 +133,7 @@ if(isset($_POST['update'])){
                
               </form>
               <hr>
-              <div class="text-center">
-                <a class="small" href="forgot-password.html">Forgot Password?</a>
-              </div>
+             
               <div class="text-center">
                 <a class="small" href="login.php">Already have an account? Login!</a>
               </div>
