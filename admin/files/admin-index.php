@@ -1,12 +1,11 @@
 <?php 
 session_start();
-
 include('../../connect.php');
 
 //session_destroy();
 $_SESSION['ausername'];
 if(empty($_SESSION['ausername'])){
-  header('location:admin-login.php');
+  header('Location:admin-login.php');
 }
 //when user is inactive for more than 30 mins he is redirected back to the login page
 if (!isset($_SESSION['CREATED'])) {
@@ -20,8 +19,6 @@ unset($_SESSION['CREATED']);
 }
 
 
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +27,7 @@ unset($_SESSION['CREATED']);
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>
-    Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
+
   </title>
   <!-- Favicon -->
   <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
@@ -51,7 +48,7 @@ unset($_SESSION['CREATED']);
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="./admin-index.php">
+      <a class="navbar-brand pt-0" href="../admin-index.php">
       <h2 > Admin Panel</h2>
         <!-- <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
       </a>
@@ -81,29 +78,29 @@ unset($_SESSION['CREATED']);
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="./files/admin-profile.php" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
             </a>
-            <a href="./files/admin-profile.php" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
-            <a href="./files/admin-profile.php" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-calendar-grid-58"></i>
               <span>Activity</span>
             </a>
-            <a href="./files/admin-profile.php" class="dropdown-item">
+            <a href="../files/admin-profile.php" class="dropdown-item">
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              
-              <span>Logout</span>
-            </a>
-          </div>
+            <form action="" method="post">
+              <div class="dropdown-divider"></div>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-user-run"></i>
+               <button type="submit" class='btn btn-primary' name='logout'>logout</button>
+              </a>
+              </form>
         </li>
       </ul>
       <!-- Collapse -->
@@ -134,7 +131,9 @@ unset($_SESSION['CREATED']);
               </div>
             </div>
           </div>
+          
         </form>
+       
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item  active ">
@@ -171,33 +170,7 @@ unset($_SESSION['CREATED']);
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul> -->
-        <ul class="navbar-nav">
-          <li class="nav-item active active-pro">
-            <a class="nav-link" href="./files/upgrade.html">
-              <i class="ni ni-send text-dark"></i> Upgrade to PRO
-            </a>
-          </li>
-        </ul>
+        
       </div>
     </div>
   </nav>
@@ -206,7 +179,7 @@ unset($_SESSION['CREATED']);
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./admin-index.php">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="../admin-index.php">Tables</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -235,28 +208,29 @@ unset($_SESSION['CREATED']);
               <div class=" dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="./files/admin-profile.php" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="./files/admin-profile.php" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Settings</span>
               </a>
-              <a href="./files/admin-profile.php" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-calendar-grid-58"></i>
                 <span>Activity</span>
               </a>
-              <a href="./files/admin-profile.php" class="dropdown-item">
+              <a href="../files/admin-profile.php" class="dropdown-item">
                 <i class="ni ni-support-16"></i>
                 <span>Support</span>
               </a>
+              <form action="" method="post">
               <div class="dropdown-divider"></div>
               <a href="#!" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
-                <span>Logout</span>
+               <button type="submit" class='btn btn-primary' name='logout'>logout</button>
               </a>
-            </div>
+              </form>
           </li>
         </ul>
       </div>
@@ -692,7 +666,7 @@ unset($_SESSION['CREATED']);
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
-              &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+             
             </div>
           </div>
           <div class="col-xl-6">
@@ -725,11 +699,7 @@ unset($_SESSION['CREATED']);
   <script src="./assets/js/argon-dashboard.min.js?v=1.1.2"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
-    window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "argon-dashboard-free"
-      });
+  
   </script>
 </body>
 

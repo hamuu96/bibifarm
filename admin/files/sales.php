@@ -25,7 +25,7 @@ unset($_SESSION['CREATED']);
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>
-    Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
+
   </title>
   <!-- Favicon -->
   <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
@@ -92,12 +92,13 @@ unset($_SESSION['CREATED']);
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
+            <form action="" method="post">
+              <div class="dropdown-divider"></div>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-user-run"></i>
+               <button type="submit" class='btn btn-primary' name='logout'>logout</button>
+              </a>
+              </form>
         </li>
       </ul>
       <!-- Collapse -->
@@ -153,11 +154,7 @@ unset($_SESSION['CREATED']);
               <i class="ni ni-bullet-list-67 text-red"></i> Sales
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="../files/admin-login.php">
-              <i class="ni ni-key-25 text-info"></i> Login
-            </a>
-          </li> -->
+          
           <li class="nav-item">
             <a class="nav-link" href="../files/admin-register.php">
               <i class="ni ni-circle-08 text-pink"></i> Register
@@ -166,33 +163,7 @@ unset($_SESSION['CREATED']);
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item active active-pro">
-            <a class="nav-link" href="../files/upgrade.html">
-              <i class="ni ni-send text-dark"></i> Upgrade to PRO
-            </a>
-          </li>
-        </ul> -->
+      
       </div>
     </div>
   </nav>
@@ -246,12 +217,13 @@ unset($_SESSION['CREATED']);
                 <i class="ni ni-support-16"></i>
                 <span>Support</span>
               </a>
+              <form action="" method="post">
               <div class="dropdown-divider"></div>
               <a href="#!" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
-                <span>Logout</span>
+               <button type="submit" class='btn btn-primary' name='logout'>logout</button>
               </a>
-            </div>
+              </form>
           </li>
         </ul>
       </div>

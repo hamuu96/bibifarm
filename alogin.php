@@ -255,7 +255,7 @@ if(isset($_POST['logout'])){
           </a>
           <div class="products-caption">
             <h4>pepers</h4>
-            <p class="text-muted">Website Design</p>
+           
           </div>
         </div>
         <div class="col-md-4 col-sm-6 products-item">

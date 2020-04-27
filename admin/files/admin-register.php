@@ -4,9 +4,7 @@ include('../../connect.php');
 session_start();
 // session_destroy();
 // $_SESSION['ausername'];
-// if(empty($_SESSION['ausername'])){
-//   header('location:admin-login.php');
-// }
+
 
 
 if(isset($_POST['register'])){
@@ -19,7 +17,7 @@ if(isset($_POST['register'])){
   $username = $_POST['username'];
 
 
-  //  $_SESSION['ausername'] = $username;
+    $_SESSION['ausername'] = $username;
 
 //check if any registration fields are empty
 if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and $username !=''  and $address !=''  and $phone !=''){

@@ -17,6 +17,10 @@ else if (time() - $_SESSION['CREATED'] > 1800) {
   header('Location:admin-login.php');
   unset($_SESSION['CREATED']);
 }
+if(isset($_POST['logout'])){
+  session_destroy();
+  header('location:admin-login.php');
+}
 $new_qunt = 0;
 $new= 0;
 
@@ -152,12 +156,13 @@ if(isset($_POST['add'])){
               <i class="ni ni-support-16"></i>
               <span>Support</span>
             </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
+            <form action="" method="post">
+              <div class="dropdown-divider"></div>
+              <a href="#!" class="dropdown-item">
+                <i class="ni ni-user-run"></i>
+               <button type="submit" class='btn btn-primary' name='logout'>logout</button>
+              </a>
+              </form>
         </li>
       </ul>
       <!-- Collapse -->
@@ -196,11 +201,7 @@ if(isset($_POST['add'])){
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link " href="../files/icons.html">
-              <i class="ni ni-circle-08 text-blue"></i> Icons
-            </a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link  active " href="../files/inventory.php">
               <i class="ni ni-pin-3 text-orange"></i> Inventory
@@ -229,33 +230,8 @@ if(isset($_POST['add'])){
         </ul>
         <!-- Divider -->
         <hr class="my-3">
-        <!-- Heading -->
-        <!-- <h6 class="navbar-heading text-muted">Documentation</h6> -->
-        <!-- Navigation -->
-        <!-- <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul> -->
-        <ul class="navbar-nav">
-          <li class="nav-item active active-pro">
-            <a class="nav-link" href="../files/upgrade.html">
-              <i class="ni ni-send text-dark"></i> Upgrade to PRO
-            </a>
-          </li>
-        </ul>
+       
+        
       </div>
     </div>
   </nav>
@@ -309,11 +285,14 @@ if(isset($_POST['add'])){
                 <i class="ni ni-support-16"></i>
                 <span>Support</span>
               </a>
+              <form action="" method="post">
               <div class="dropdown-divider"></div>
               <a href="#!" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
-                <span>Logout</span>
+               <button type="submit" class='btn btn-primary' name='logout'>logout</button>
               </a>
+              </form>
+             
             </div>
           </li>
         </ul>
