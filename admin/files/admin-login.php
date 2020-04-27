@@ -2,8 +2,7 @@
 
 include('../../connect.php');
 session_start();
-// session_destroy();
-// print_r($_SESSION['ausername']);
+
 
 if (isset($_GET['login'])) {
   $username = mysqli_real_escape_string($conn, $_GET['username']);

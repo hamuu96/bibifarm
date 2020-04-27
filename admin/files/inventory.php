@@ -42,7 +42,7 @@ if(isset($_POST['add'])){
                   if ($sql1){
                     $count = mysqli_num_rows($sql1);
                     if($count>=1){
-                      $query=  mysqli_query($conn, "update EINVENTORY set e_quantity=$new_qunt + $new");
+                      $query=  mysqli_query($conn, "update EINVENTORY set e_quantity=$new_qunt + $new WHERE e_name='$e_name'");
                       
                           if($query){
                             
