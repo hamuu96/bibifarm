@@ -12,10 +12,18 @@ if (isset($_GET['login'])) {
 
 
   if (empty($username)) {
-  	echo 'enter username';
+    ?>
+    <div class="alert alert-danger text-center " style='text-transform:uppercase;  margin-top:10px;' role="alert" >
+  please enter a username
+</div>
+<?php
   }
   else if (empty($password)) {
-  	echo 'enter password';
+    ?>
+    <div class="alert alert-danger text-center " style='text-transform:uppercase;  margin-top:10px;' role="alert" >
+  please enter a password
+</div>
+<?php
   }
   //store the password provided in the input as md5 encrypted
   $password_1 = md5($password);

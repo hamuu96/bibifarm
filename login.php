@@ -22,15 +22,19 @@ if (isset($_GET['login'])) {
 
   $_SESSION['username'] = $username; 
   
-  // $_SESSION['userid'] = $userID;
 
-  // $sql = 'SELECT * FROM CUSTOMER WHERE'
 
   if (empty($username)) {
-  	echo 'enter username';
+    ?> 
+      <div class='alert alert-warning text-center' style="margin-top:70px; text-transform:uppercase;"><?php echo 'Please enter your username'?></div>
+  
+     <?php
   }
   else if (empty($password)) {
-  	echo 'enter password';
+    ?> 
+    <div class='alert alert-warning text-center' style="margin-top:70px; text-transform:uppercase;"><?php echo 'Please enter your password'?></div>
+
+   <?php
   }
   //store the password provided in the input as md5 encrypted
   $password_1 = md5($password);

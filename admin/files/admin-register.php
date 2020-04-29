@@ -23,13 +23,17 @@ if(isset($_POST['register'])){
 if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and $username !=''  and $address !=''  and $phone !=''){
 
   //check if the username exists in the database
-        $sql1  = mysqli_query($conn, "SELECT * FROM  ADMIN  WHERE email='$email' ");
+        $sql1  = mysqli_query($conn, "SELECT username FROM  ADMIN  WHERE email='$email' ");
             if ($sql1){
               $count = mysqli_num_rows($sql1);
             
               if($count>=1)
                 {
-                echo"name already exists";
+                  ?>
+                  <div class="alert alert-danger text-center " style='text-transform:uppercase;  margin-top:10px;' role="alert" >
+                name already exists
+              </div>
+              <?php
               }
               else
                 {
@@ -53,7 +57,7 @@ if($firstname != '' and $lastname != '' and $email != '' and $password !=''  and
 }
 else{
   ?>
-    <div class="alert alert-danger" role="alert" >
+    <div class="alert alert-danger text-center " style='text-transform:uppercase;  margin-top:10px;' role="alert" >
   please fill the form
 </div>
 <?php

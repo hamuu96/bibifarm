@@ -3,7 +3,7 @@ session_start();
 include('../../connect.php');
 
 //session_destroy();
-$_SESSION['ausername'];
+// $_SESSION['ausername'];
 if(empty($_SESSION['ausername'])){
   header('Location:admin-login.php');
 }
